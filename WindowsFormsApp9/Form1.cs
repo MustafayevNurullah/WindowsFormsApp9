@@ -12,28 +12,45 @@ namespace WindowsFormsApp9
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
             
-            
-           
-
+          
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            for (int i = 8; i < 75; i+=5)
-                NewMethod(i);
-            // Font.Items.AddRange(FontFamily.Families);
-            List<string> fonts = new List<string>();
+
+            Size.Items.Add(8);
+            Size.Items.Add(9);
+            Size.Items.Add(10);
+            Size.Items.Add(11);
+            Size.Items.Add(12);
+            Size.Items.Add(14);
+            Size.Items.Add(16);
+            Size.Items.Add(18);
+            Size.Items.Add(20);
+            Size.Items.Add(22);
+            Size.Items.Add(24);
+            Size.Items.Add(26);
+            Size.Items.Add(28);
+            Size.Items.Add(36);
+            Size.Items.Add(48);
+            Size.Items.Add(72);
+
+        
 
             foreach (FontFamily font in System.Drawing.FontFamily.Families)
             {
                 Font.Items.Add(font.Name);
             }
 
-            richTextBox1.Font = new Font("Calibri", 11);
+            Size.Text = "11";
+            Font.Text = "Calibri";
+            richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text));
+
         }
 
         private void NewMethod(int i)
@@ -54,7 +71,11 @@ namespace WindowsFormsApp9
 
         private void L_CheckedChanged(object sender, EventArgs e)
         {
-            richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
+            
+
+
+                richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
+            
         }
 
         private void C_CheckedChanged(object sender, EventArgs e)
@@ -69,45 +90,210 @@ namespace WindowsFormsApp9
 
         private void Size_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (Size.SelectedIndex)
-            {
-                case 0:
-                    richTextBox1.Font = new Font(Font.SelectedIndex + 1.ToString(), 8);
+            
+            richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text));
 
-                    break;
-                case 1:
-                    richTextBox1.Font = new Font(Font.SelectedIndex + 1.ToString(), 13);
+            //if(Size.SelectedIndex<5)
+            //{
+            //    richTextBox1.Font = new Font(Font.SelectedIndex + 1.ToString(), Size.SelectedIndex+8);
+            //}
+            //if ( Size.SelectedIndex < 13 & Size.SelectedIndex >4)
+            //{
+            //    richTextBox1.Font = new Font(Font.SelectedIndex + 1.ToString(), Size.SelectedIndex + 9);
+            //}
+            //if(Size.SelectedIndex==13)
+            //{
+            //    richTextBox1.Font = new Font(Font.SelectedIndex + 1.ToString(), 36);
+            //}
+            //if(Size.SelectedIndex==14)
+            //{
+            //    richTextBox1.Font = new Font(Font.SelectedIndex + 1.ToString(), 48);
+            //}
+            //if (Size.SelectedIndex == 15)
+            //{
+            //    richTextBox1.Font = new Font(Font.SelectedIndex + 1.ToString(), 72);
+            //}
 
-                    break;
-                case 2:
-                    richTextBox1.Font = new Font(Font.SelectedIndex + 1.ToString(), 18);
-
-                    break;
-                case 3:
-                    richTextBox1.Font = new Font(Font.SelectedIndex + 1.ToString(), 23);
-
-                    break;
-
-
-            }
-
-
-            richTextBox1.Font = new Font(Font.SelectedIndex+1.ToString(), Size.SelectedIndex+1);
-           
         }
 
         private void Font_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var a = Font.SelectedIndex;
-      
-            foreach (FontFamily font in System.Drawing.FontFamily.Families)
+            richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text));
+
+            //foreach (FontFamily font in System.Drawing.FontFamily.Families)
+            //{
+
+            //if(font.Name==Font.Text)
+            //    {
+            //        richTextBox1.Font = new Font(font.Name, Convert.ToInt32(Size.Text));
+            //    }
+            //}
+
+
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
+
+            if(checkBox3.Checked)
             {
-                if(a==Font.SelectedIndex+1)
+                if (U.Checked & checkBox3.Checked)
                 {
-                   
-            richTextBox1.Font = new Font(font.Name, Size.SelectedIndex+1);
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Bold | FontStyle.Underline | FontStyle.Italic);
                 }
+                if (!U.Checked & B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Bold | FontStyle.Italic);
+
+                }
+                if (U.Checked & !B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Italic | FontStyle.Underline);
+
+                }
+                if (!U.Checked & !B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Italic);
+
+                }
+
+
             }
+            else
+            {
+                if (U.Checked & B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular | FontStyle.Underline | FontStyle.Bold);
+                }
+                if (!U.Checked & B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular | FontStyle.Bold);
+
+                }
+                if (U.Checked & !B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular | FontStyle.Underline);
+
+                }
+                if (!U.Checked & !B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular);
+
+                }
+
+
+            }
+        }
+
+
+        private void B_CheckedChanged(object sender, EventArgs e)
+        {
+            if (B.Checked)
+            {
+                if (U.Checked & checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Bold | FontStyle.Underline | FontStyle.Italic );
+                }
+                if(!U.Checked & checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Bold | FontStyle.Italic);
+
+                }
+                if (U.Checked & !checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Bold | FontStyle.Underline);
+
+                }
+                if (!U.Checked & !checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Bold );
+
+                }
+
+
+            }
+            else
+            {
+                if (U.Checked & checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular | FontStyle.Underline | FontStyle.Italic);
+                }
+                if (!U.Checked & checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular | FontStyle.Italic);
+
+                }
+                if (U.Checked & !checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular | FontStyle.Underline);
+
+                }
+                if (!U.Checked & !B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular);
+
+                }
+
+
+            }
+
+        }
+
+        private void U_CheckedChanged(object sender, EventArgs e)
+        {
+            if (U.Checked)
+            {
+                if (B.Checked & checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Bold | FontStyle.Underline | FontStyle.Italic);
+                }
+                if (!B.Checked & checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Underline | FontStyle.Italic);
+
+                }
+                if (B.Checked & !checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Underline | FontStyle.Bold);
+
+                }
+                if (!B.Checked & !B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Underline);
+
+                }
+
+
+            }
+            else
+            {
+                if (B.Checked & checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular | FontStyle.Bold | FontStyle.Italic);
+                }
+                if (!B.Checked & checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular | FontStyle.Italic);
+
+                }
+                if (B.Checked & !checkBox3.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular | FontStyle.Bold);
+
+                }
+                if (!U.Checked & !B.Checked)
+                {
+                    richTextBox1.Font = new Font(Font.Text, Convert.ToInt32(Size.Text), FontStyle.Regular);
+
+                }
+
+
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

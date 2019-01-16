@@ -127,6 +127,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 15;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button7
             // 
@@ -156,6 +157,7 @@
             this.B.TabIndex = 18;
             this.B.Text = "B";
             this.B.UseVisualStyleBackColor = true;
+            this.B.CheckedChanged += new System.EventHandler(this.B_CheckedChanged);
             // 
             // U
             // 
@@ -167,6 +169,7 @@
             this.U.TabIndex = 19;
             this.U.Text = "U";
             this.U.UseVisualStyleBackColor = true;
+            this.U.CheckedChanged += new System.EventHandler(this.U_CheckedChanged);
             // 
             // checkBox3
             // 
@@ -178,6 +181,7 @@
             this.checkBox3.TabIndex = 20;
             this.checkBox3.Text = "/";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // L
             // 
